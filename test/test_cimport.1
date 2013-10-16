@@ -1,0 +1,238 @@
+#ifdef __GCCXML__
+#include <vector>
+#include <stdint.h>
+#include <string>
+#endif
+
+int h2RecordErrMsgs(char *bywho, char *moduleName, short moduleId, 
+		    int nbErrors, const int errMsgs[]);
+
+int functionWithGCCAttributes(void* id) __attribute__((__nothrow__)) __attribute__((__nonnull__ (1)));
+
+struct A
+{
+    long long a;
+    int  b;
+    char  c;
+    short d;
+};
+
+typedef struct A ADef;
+typedef int array_typedef[256];
+typedef int multi_array_typedef[256][512];
+
+#ifndef __GCCXML__
+typedef struct Recursive {
+    struct Recursive* next;
+} Recursive;
+#endif
+
+typedef struct B
+{
+    ::ADef  a;
+    float c[100];
+    float d[(1)];
+    float e[(2-1)];
+    float f[(2+1)];
+    float g[4/2];
+    struct A h[(1+3)*2>>1];
+    float i[10][20];
+
+    float x, y, z;
+} B;
+
+typedef struct C
+{
+    float x[sizeof(unsigned int)], *y, z;
+} C;
+
+enum E {
+    E_FIRST,
+    E_SECOND,
+    E_SET = -1,
+    E_PARENS = (-2),
+    E_HEX = 0xFF,
+    E_OCT = 07,
+    LAST,
+    E_FROM_SYMBOL = E_FIRST + E_HEX,
+    E_FROM_SIZEOF_STD  = sizeof(unsigned int),
+    E_FROM_SIZEOF_SPEC = sizeof(B)
+};
+
+namespace E_comparison_1 {
+    enum E_with_added_values {
+        E_FIRST,
+        E_SECOND,
+        E_SET = -1,
+        E_PARENS = (-2),
+        E_HEX = 0xFF,
+        E_OCT = 07,
+        LAST,
+        E_FROM_SYMBOL = E_FIRST + E_HEX,
+        E_FROM_SIZEOF_STD  = sizeof(unsigned int),
+        E_FROM_SIZEOF_SPEC = sizeof(B),
+        E_NEW_FIELD = 100
+    };
+}
+
+namespace E_comparison_2 {
+    enum E_with_modified_values {
+        E_FIRST,
+        E_SECOND,
+        E_SET = -1,
+        E_PARENS = (-2),
+        E_HEX = 0xFF,
+        E_OCT = 06,
+        LAST,
+        E_FROM_SYMBOL = E_FIRST + E_HEX,
+        E_FROM_SIZEOF_STD  = sizeof(unsigned int),
+        E_FROM_SIZEOF_SPEC = sizeof(B)
+    };
+}
+
+typedef struct EContainer
+{
+    E value;
+} EContainer;
+
+typedef enum INPUT_OUTPUT_MODE {
+    OUTPUT, BOTH
+} INPUT_OUTPUT_MODE;
+
+typedef enum {
+    ANONYMOUS_ENUM_OK
+} ANONYMOUS_ENUM, *ANONYMOUS_ENUM_PTR;
+
+typedef void* OPAQUE_TYPE;
+
+void ignore_functions();
+
+typedef struct {
+    int field;
+    float value;
+} DEFINE_STR, *DEFINE_ID;
+
+typedef struct TEST_ENUM_FIELDS {
+    INPUT_OUTPUT_MODE mode;
+    enum INPUT_OUTPUT_MODE mode_enum;
+    ANONYMOUS_ENUM anonymous_enum;
+} TEST_ENUM_FIELDS;
+
+typedef struct DisplayTest {
+    int fields[4];
+    float f;
+    double d;
+    ADef a;
+    INPUT_OUTPUT_MODE mode;
+} DisplayTest;
+
+typedef struct TestMultiDimArray {
+    int fields[10][10];
+} TestMultiDimArray;
+
+typedef struct TestMemoryManagement {
+    struct B b[10][10];
+} TestMemoryManagement;
+
+
+namespace NS1 {
+    namespace NS2 {
+	struct Test {
+	    int a;
+	};
+    }
+}
+
+namespace NS1 {
+    namespace Bla {
+	struct Test { 
+	    char a;
+	};
+    }
+
+    struct Test { 
+	short a;
+#ifndef VALID_STRICT_C
+	NS1::Bla::Test b;
+#endif
+    };
+}
+
+#ifndef VALID_STRICT_C
+namespace NS1 {
+    namespace NS1_1 {
+	struct Foo {
+	    int a;
+	    short b;
+	};
+    }
+
+    namespace NS1_2 {
+	typedef NS1_1::Foo Foo;
+    }
+
+    struct Foo {
+	NS1_1::Foo test;
+    };
+}
+
+namespace VeryLongNamespaceName {
+    typedef double test[4];
+}
+
+struct StdCollections {
+     int iv;
+     std::vector<double> dbl_vector;
+     int8_t v8;
+     std::vector< std::vector<double> > v_of_v;
+     //std::set<float> float_set;
+     int16_t v16;
+     //std::map<int, int> int_map;
+     int64_t v64;
+     char padding;
+};
+
+struct Collections {
+     std::vector< double >    v_numeric;
+     char padding1;
+     std::vector< NS1::Test > v_struct;
+     char padding2;
+     std::vector< std::vector<double> >    v_v_numeric;
+     char padding3;
+     std::vector< std::vector<NS1::Test> > v_v_struct;
+     char padding4;
+};
+
+struct Arrays {
+     double    a_numeric[10];
+     char padding1;
+     NS1::Test a_struct[10];
+     char padding2;
+     std::vector<double>    a_v_numeric[10];
+     char padding3;
+     std::vector<NS1::Test> a_v_struct[10];
+     char padding4;
+};
+
+struct TemplateArray {
+    std::vector<double> dbl_vector_array[10];
+};
+
+struct StringHandling {
+    char a;
+    std::string b;
+    short c;
+};
+
+struct BoolHandling {
+    bool value;
+};
+
+struct CompoundWithOverloadingClashes {
+    int name; // should not be overloaded on the class, but OK on the instance
+    int cast; // should not be overloaded on the instance, but OK on the class
+    int object_id; // should be overloaded in both cases
+};
+
+#endif
+

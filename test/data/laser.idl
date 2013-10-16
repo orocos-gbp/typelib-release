@@ -1,0 +1,12 @@
+module Laser {
+    module Corba {
+        struct Data {
+            long sec;
+            unsigned long usec;
+            double ranges[256];
+        };
+        typedef long array_typedef[256];
+
+    };
+
+};
