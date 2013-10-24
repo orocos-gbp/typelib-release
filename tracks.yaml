@@ -14,7 +14,7 @@ tracks:
     patches: null
     release_inc: '1'
     release_repo_url: null
-    release_tag: v2.7.0-rc2
+    release_tag: v2.7.0-rc4
     ros_distro: hydro
     vcs_type: git
     vcs_uri: https://git.gitorious.org/orocos-toolchain/typelib.git
