@@ -90,3 +90,8 @@ ADD_SUBDIRECTORY(lang/tlb)
 ADD_SUBDIRECTORY(lang/idl)
 ADD_SUBDIRECTORY(typelib)
 
+# Install an env-hook if catkin is found
+find_package(catkin)
+if(catkin_FOUND)
+  catkin_add_env_hooks(00.typelib SHELLS sh DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/env-hooks)
+endif()
