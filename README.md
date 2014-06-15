@@ -1,3 +1,22 @@
+## typelib (hydro) - 2.7.0-5
+
+The packages in the `typelib` repository were released into the `hydro` distro by running `/usr/bin/bloom-release --ros-distro hydro --track hydro typelib --edit` on `Sun, 15 Jun 2014 19:05:49 -0000`
+
+The `typelib` package was released.
+
+Version of package(s) in repository `typelib`:
+- rosdistro version: `2.7.0-4`
+- old version: `2.7.0-4`
+- new version: `2.7.0-5`
+
+Versions of tools used:
+- bloom version: `0.5.9`
+- catkin_pkg version: `0.2.2`
+- rosdep version: `0.10.27`
+- rosdistro version: `0.3.5`
+- vcstools version: `0.1.35`
+
+
 ## typelib - 2.7.0-4
 
 User `rsmits@im-desktop-01` released the packages in the `typelib` repository by running `/usr/bin/bloom-release -t hydro -r hydro typelib` on `Fri, 07 Feb 2014 15:05:56 -0000`
