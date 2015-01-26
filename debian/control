@@ -1,53 +1,12 @@
-Source: typelib
-Section: libs
+Source: ros-indigo-typelib
+Section: misc
 Priority: extra
-Maintainer: Sylvain Joyeux <sylvain.joyeux@m4x.org>
-Build-Depends: cdbs, debhelper (>= 7), cmake, antlr, ruby1.8-dev, doxygen, libboost-dev
-Standards-Version: 3.8.3
-Homepage: http://github.com/doudou/typelib
+Maintainer: OCL Development Team <orocos-dev@lists.mech.kuleuven.be>
+Build-Depends: debhelper (>= 9.0.0), cmake, gccxml, libboost-all-dev, libxml2-dev, pkg-config, ros-indigo-catkin, ros-indigo-utilrb, ruby-facets
+Homepage: 
+Standards-Version: 3.9.2
 
-Package: libtypelib1
+Package: ros-indigo-typelib
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: C/C++ type introspection library (binary files)
- typelib allows to represent C/C++ "value types", i.e. structs, unions, ...
- Moreover, it allows to marshall, unmarshall, change in-memory structures
- dynamically.
- .
- See also the libtypelib-ruby1.8 Ruby bindings, that allow to seamlessly
- interface C/C++ and Ruby code.
-
-Package: libtypelib1-dev
-Architecture: any
-Section: libdevel
-Depends: ${shlibs:Depends}, ${misc:Depends}, libtypelib1 (= ${binary:Version}), libboost-dev
-Provides: libtypelib-dev
-Description: C/C++ type introspection library (development files)
- typelib allows to represent C/C++ "value types", i.e. structs, unions, ...
- Moreover, it allows to marshall, unmarshall, change in-memory structures
- dynamically.
- .
- See also the libtypelib-ruby1.8 Ruby bindings, that allow to seamlessly
- interface C/C++ and Ruby code.
-
-Package: libtypelib1-ruby1.8
-Section: ruby
-Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, libtypelib1 (= ${binary:Version})
-Description: C/C++ type introspection library (Ruby bindings)
- typelib allows to represent C/C++ "value types", i.e. structs, unions, ...
- Moreover, it allows to marshall, unmarshall, change in-memory structures
- dynamically.
-
-Package: libtypelib-doc
-Section: doc
-Architecture: all
-Depends: ${misc:Depends}
-Description: C/C++ type introspection library (documentation)
- typelib allows to represent C/C++ "value types", i.e. structs, unions, ...
- Moreover, it allows to marshall, unmarshall, change in-memory structures
- dynamically.
- .
- See also the libtypelib-ruby1.8 Ruby bindings, that allow to seamlessly
- interface C/C++ and Ruby code.
-
+Depends: ${shlibs:Depends}, ${misc:Depends}, gccxml, libboost-all-dev, libxml2-dev, ros-indigo-catkin, ros-indigo-utilrb, ruby-facets
+Description: This library offers an introspection mechanism for C/C++ value-types. I.e. it offers a way to represent types, and to manipulate in-memory values that are instances of those types. A Ruby binding is included, which gives a fast and transparent modification of C/C++ in-memory types from Ruby.
